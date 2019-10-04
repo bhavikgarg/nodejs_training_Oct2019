@@ -1,20 +1,9 @@
-var express = require('express');
-var app = express();
-var routes = require('./routes');
+var app=require('express')()
+var bodyParser=require('body-parser')
+var routes=require('./routes')
 
-app.listen(3000, function() {
-    console.log("Server started");
-});
+app.use(bodyParser.json())
 
-// app.get('/', function(req, res) {
-//     res.send("Ok I am running")
-// })
+routes(app);
 
-// app.get('/api/students', function(req, res) {
-//     res.send("Ok. Students fetched");
-// });
-
-// routes(app);
-require('./routes')(app);
-
-module.exports = app;
+app.listen(3000,()=>console.log('Server listening on port 3000'))
